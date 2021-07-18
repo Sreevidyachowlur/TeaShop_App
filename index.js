@@ -19,18 +19,18 @@ var upload = multer({ storage: storage });
 
 
 
-// app.post('/',(req,res)=>{
+// app.order('/',(req,res)=>{
 // console.log( req.body);
 // res.send('success');
 // })
 
 require('./db');
 
-app.use('/users', require('./controller/user-controller'));
+app.use('/shops', require('./controller/shop-controller'));
 app.use('/auth', require('./controller/auth-controller'));
-app.use('/post', require('./controller/post-controller'));
+app.use('/order', require('./controller/order-controller'));
 
-app.post('/upload', upload.single('photo'), (req, res) => {
+app.order('/upload', upload.single('photo'), (req, res) => {
     if(req.file) {
         console.log(res)
         res.json(req.file.path);

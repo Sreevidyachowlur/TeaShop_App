@@ -3,14 +3,14 @@
 const CONSTANT = {
   ROLE: ['EMPLOYEE', 'ADMIN'],
   ENDPOINT: {
-    USER: {
-      CREATE_USER: "/createUser",
+    SHOP: {
+      CREATE_SHOP: "/createshop",
       LOGIN: '/auth',
-      EDIT:'/userEdit',
-      DELETE:'/userDelete'
+      EDIT:'/shopEdit',
+      DELETE:'/shopDelete'
     },
-    POST: {
-      NEW_POST: "/newpost",
+    order: {
+      NEW_order: "/neworder",
       EDIT: '/edit',
       DELETE:'/delete',
       LIKE:'/like',

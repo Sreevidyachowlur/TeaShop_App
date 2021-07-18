@@ -1,11 +1,11 @@
-const userModel = require('../model/user-model');
+const shopModel = require('../model/shop-model');
 const utilities = require('../utils/utilities');
 const CONSTANT = require('../utils/constant');
 const bcrypt = require('bcrypt');
 const saltRounds = 10; //salt value can be 8 or more than that,if it increases more than 10 
 // it take more time to exicute..default salt value is 10.10 rounds it do for encode 
 
-const userDAO = {
+const shopDAO = {
 
     create: async (payload) => {
 
@@ -15,7 +15,7 @@ const userDAO = {
 
 
         console.log('payload inside dao from service', payload);
-        return new userModel({ //NOTE:its connected with DB so,DAO indirectly wrapped with promise 
+        return new shopModel({ //NOTE:its connected with DB so,DAO indirectly wrapped with promise 
             name: payload.name,
             dob: payload.dob,
             email: payload.email,
@@ -32,28 +32,28 @@ const userDAO = {
     },
   
     emailExist: (email, phone) => {
-        return userModel.findOne({ email: email, phone: phone })
+        return shopModel.findOne({ email: email, phone: phone })
     },
    
 
-    userEdit: (userId,payload) => {
-        return userModel.updateOne({"_id":userId},{$set:payload}) //user_id for update
+    shopEdit: (shopId,payload) => {
+        return shopModel.updateOne({"_id":shopId},{$set:payload}) //shop_id for update
     },
-    userDelete: (userId) => {
-        return userModel.remove({"_id":userId})
+    shopDelete: (shopId) => {
+        return shopModel.remove({"_id":shopId})
 
     },
  
     // leaveIdExist: (leaveID, empId) => {
-    //     return userModel.findOne({ leaveID: leaveID, empId: empId })
+    //     return shopModel.findOne({ leaveID: leaveID, empId: empId })
     // }
     getByCondition: (condition) => {
-        return userModel.findOne(condition);
+        return shopModel.findOne(condition);
     },
     isExist: (email) => {
-        return userModel.findOne({ email: email })
+        return shopModel.findOne({ email: email })
 
     },
 
 }
-module.exports = userDAO;
+module.exports = shopDAO;

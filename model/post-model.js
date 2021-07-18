@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const constant = require('../utils/constant');
 // const CONSTANT = require('../utils/constant');
 
-const postSchema = new Schema({
+const orderSchema = new Schema({
   title: {
     type: String,
     required: true
@@ -21,19 +21,19 @@ const postSchema = new Schema({
     default:0
   },
   comment:[{
-    userId:{
+    shopId:{
       type:Schema.Types.ObjectId,
-      ref:'users'
+      ref:'shops'
     },
     text:{
       type:String
     }
   }],
-  userID:{
+  shopID:{
     
        
-            type: Schema.Types.ObjectId, //reference to user collection to populate user data post.
-            ref: "users"
+            type: Schema.Types.ObjectId, //reference to shop collection to populate shop data order.
+            ref: "shops"
          
         // require: true
   },
@@ -45,4 +45,4 @@ const postSchema = new Schema({
 
 });
 
-module.exports = mongoose.model('posts', postSchema);
+module.exports = mongoose.model('orders', orderSchema);

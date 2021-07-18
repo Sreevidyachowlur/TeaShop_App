@@ -1,14 +1,14 @@
-const userDAO = require('../DAO/user-dao');
-const userService = {
+const shopDAO = require('../DAO/shop-dao');
+const shopService = {
     create: (payload) => {
 
         console.log('payload inside service from controller', payload);
         return new Promise((resolve, reject) => { //NOTE:in service we will use promise(resolve,reject),then() and catch()
-            userDAO.emailExist(payload.email, payload.phone).then((result) => {
+            shopDAO.emailExist(payload.email, payload.phone).then((result) => {
                 console.log('newly registered email', result);
                 // resolve(result);
                 if (result == null) {
-                    userDAO.create(payload).then((result) => {
+                    shopDAO.create(payload).then((result) => {
                         resolve('data got stored successfully');
                     }).catch(error => {
                         reject(error);
@@ -25,18 +25,18 @@ const userService = {
         })
 
     },
-    userEdit:(userId, payload) => { //user will come from authentication 
+    shopEdit:(shopId, payload) => { //shop will come from authentication 
 
         console.log('payload inside service from controller', payload);
 
         return new Promise((resolve, reject) => { //NOTE:in service we will use promise(resolve,reject),then() and catch()
-            // payload['userID'] = user._id; //get empid from authentication req.user and set new property empId to payload 
+            // payload['shopID'] = shop._id; //get empid from authentication req.shop and set new property empId to payload 
             // coming from payload.
             if(payload.email){
                 reject('email not editable');
             }
-            userDAO.userEdit(userId,payload).then((result) => {
-                resolve('successfully edited user details');
+            shopDAO.shopEdit(shopId,payload).then((result) => {
+                resolve('successfully edited shop details');
             }).catch(error => {
                 reject(error);
             }) 
@@ -49,7 +49,7 @@ const userService = {
 
         return new Promise((resolve, reject) => { //NOTE:in service we will use promise(resolve,reject),then() and catch()
 
-            userDAO.leaveCountOne(payload).then((result) => {
+            shopDAO.leaveCountOne(payload).then((result) => {
                 console.log(result);
 
 
@@ -66,4 +66,4 @@ const userService = {
 
 
 
-module.exports = userService;
+module.exports = shopService;

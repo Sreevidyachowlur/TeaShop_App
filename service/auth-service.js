@@ -1,17 +1,17 @@
-const userDAO = require('../DAO/user-dao');
+const shopDAO = require('../DAO/shop-dao');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const constant = require('../utils/constant');
 
 
-// const authDAO = require('../DAO/user-dao');
+// const authDAO = require('../DAO/shop-dao');
 const authService = {
     login: (payload) => { 
 
         console.log('payload inside service from controller', payload);
 
         return new Promise((resolve, reject) => { //NOTE:in service we will use promise(resolve,reject),then() and catch()
-            userDAO.isExist(payload.email).then(async (result) => {
+            shopDAO.isExist(payload.email).then(async (result) => {
                 console.log(result);
                 // resolve({"service got hit":result});
                 if (!result) {

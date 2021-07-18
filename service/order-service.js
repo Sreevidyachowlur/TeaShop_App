@@ -1,14 +1,14 @@
-const postDAO = require('../DAO/post-dao');
-const postService = {
-    create: (user, payload) => { //post will come from authentication 
+const orderDAO = require('../DAO/order-dao');
+const orderService = {
+    create: (shop, payload) => { //order will come from authentication 
 
         console.log('payload inside service from controller', payload);
 
         return new Promise((resolve, reject) => { //NOTE:in service we will use promise(resolve,reject),then() and catch()
-            payload['userID'] = user._id; //get empid from authentication req.post and set new property empId to payload 
+            payload['shopID'] = shop._id; //get empid from authentication req.order and set new property empId to payload 
             // coming from payload.
-            postDAO.create(payload).then((result) => {
-                resolve('successfully posted');
+            orderDAO.create(payload).then((result) => {
+                resolve('successfully ordered');
             }).catch(error => {
                 reject(error);
             }) 
@@ -16,14 +16,14 @@ const postService = {
         })
     },
 
-    postEdit:(postId, payload) => { //post will come from authentication 
+    orderEdit:(orderId, payload) => { //order will come from authentication 
 
         console.log('payload inside service from controller', payload);
 
         return new Promise((resolve, reject) => { //NOTE:in service we will use promise(resolve,reject),then() and catch()
-            // payload['userID'] = user._id; //get empid from authentication req.post and set new property empId to payload 
+            // payload['shopID'] = shop._id; //get empid from authentication req.order and set new property empId to payload 
             // coming from payload.
-            postDAO.postEdit(postId,payload).then((result) => {
+            orderDAO.orderEdit(orderId,payload).then((result) => {
                 resolve('successfully edited');
             }).catch(error => {
                 reject(error);
@@ -31,27 +31,27 @@ const postService = {
 
         })
     },
-    postDelete:(postId) => { //post will come from authentication 
+    orderDelete:(orderId) => { //order will come from authentication 
 
        return new Promise((resolve, reject) => { //NOTE:in service we will use promise(resolve,reject),then() and catch()
-            // payload['userID'] = user._id; //get empid from authentication req.post and set new property empId to payload 
+            // payload['shopID'] = shop._id; //get empid from authentication req.order and set new property empId to payload 
             // coming from payload.
-            postDAO.postDelete(postId).then((result) => {
-                resolve('Post Deleted');
+            orderDAO.orderDelete(orderId).then((result) => {
+                resolve('order Deleted');
             }).catch(error => {
                 reject(error);
             }) 
 
         })
     },
-    postLike:(postId, payload) => { //post will come from authentication 
+    orderLike:(orderId, payload) => { //order will come from authentication 
 
         console.log('payload inside service from controller', payload);
 
         return new Promise((resolve, reject) => { //NOTE:in service we will use promise(resolve,reject),then() and catch()
-            // payload['userID'] = user._id; //get empid from authentication req.post and set new property empId to payload 
+            // payload['shopID'] = shop._id; //get empid from authentication req.order and set new property empId to payload 
             // coming from payload.
-            postDAO.postLike(postId,payload).then((result) => {
+            orderDAO.orderLike(orderId,payload).then((result) => {
                 resolve(result);
             }).catch(error => {
                 reject(error);
@@ -59,13 +59,13 @@ const postService = {
 
         })
     },
-    postComment:(postId, user,payload) => { //post will come from authentication 
+    orderComment:(orderId, shop,payload) => { //order will come from authentication 
 
         console.log('payload inside service from controller', payload);
 
         return new Promise((resolve, reject) => { //NOTE:in service we will use promise(resolve,reject),then() and catch()
-            payload['userId'] = user._id;
-            postDAO.postComment(postId,payload).then((result) => {
+            payload['shopId'] = shop._id;
+            orderDAO.orderComment(orderId,payload).then((result) => {
                 resolve('commented successfully');
             }).catch(error => {
                 reject(error);
@@ -79,4 +79,4 @@ const postService = {
 
 
 
-module.exports = postService;
+module.exports = orderService;

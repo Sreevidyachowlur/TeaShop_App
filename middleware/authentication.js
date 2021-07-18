@@ -1,4 +1,4 @@
-const userDAO = require('../dao/user-dao');
+const shopDAO = require('../dao/shop-dao');
 const constant = require('../utils/constant');
 const jwt = require('jsonwebtoken');
 
@@ -10,13 +10,13 @@ let authentication = (req, res, next) => {
         console.log("starting of middleware");
         let token = req.headers.authorization;// step 1
         console.log("starting of middleware", token);
-        let decodedPayload = jwt.verify(token, constant.ENDPOINT.JWT.JWT_SCRET);// user payload collection // step 2
+        let decodedPayload = jwt.verify(token, constant.ENDPOINT.JWT.JWT_SCRET);// shop payload collection // step 2
         console.log("starting of middleware", decodedPayload);
-        userDAO.getByCondition({ _id: decodedPayload._id }).then((result) => {
+        shopDAO.getByCondition({ _id: decodedPayload._id }).then((result) => {
             if (!result) {
-                return res.send('user is not authorized');
+                return res.send('shop is not authorized');
             } else {
-                req.user = decodedPayload;
+                req.shop = decodedPayload;
                 console.log("inside middleware");
                 next();
             } 

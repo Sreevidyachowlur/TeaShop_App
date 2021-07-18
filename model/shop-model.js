@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const constant = require('../utils/constant');
 // const CONSTANT = require('../utils/constant');
 
-const userSchema = new Schema({
+const shopSchema = new Schema({
   name: {
     type: String,
     required: true
@@ -39,4 +39,4 @@ const userSchema = new Schema({
 
 });
 
-module.exports = mongoose.model('users', userSchema);
+module.exports = mongoose.model('shops', shopSchema);
