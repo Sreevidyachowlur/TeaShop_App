@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/Insta_app', {
+mongoose.connect('mongodb://localhost/TeaShop', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,

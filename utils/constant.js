@@ -4,7 +4,7 @@ const CONSTANT = {
   ROLE: ['EMPLOYEE', 'ADMIN'],
   ENDPOINT: {
     SHOP: {
-      CREATE_SHOP: "/createshop",
+      CREATE_SHOP: "/createShop",
       LOGIN: '/auth',
       EDIT:'/shopEdit',
       DELETE:'/shopDelete'
