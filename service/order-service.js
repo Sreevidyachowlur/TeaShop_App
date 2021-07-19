@@ -16,6 +16,19 @@ const orderService = {
 
         })
     },
+    getByDate: (date) => { 
+
+        console.log('payload inside service from controller', date);
+
+        return new Promise((resolve, reject) => { 
+            orderDAO.getByDate(date).then((result) => {
+                resolve(result);
+            }).catch(error => {
+                reject(error);
+            }) 
+
+        })
+    },
 }
 
 

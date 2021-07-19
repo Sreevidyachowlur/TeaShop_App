@@ -14,6 +14,16 @@ route.post('/', function (req, res) {
         res.send(error);
     })
 }),
+
+
+route.get('/:date', function (req, res) {
+
+    orderService.getByDate(req.params.date).then(result => { //NOTE: in controller we will use only then() and catch()
+        res.send(result);
+    }).catch(error => {
+        res.send(error);
+    })
+}),
   
 
 
